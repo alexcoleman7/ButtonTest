@@ -15,6 +15,7 @@ struct ContentView: View {
 }
 
 //bla bla test
+//I'm struggling here to commit things properly
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
