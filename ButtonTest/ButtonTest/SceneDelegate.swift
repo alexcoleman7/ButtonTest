@@ -18,7 +18,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-
+        
+        //First attempt that didn't work
+        /*
+        // Create a window that is the same size as the screen
+        window = UIWindow(frame: UIScreen.main.bounds)
+        //Create a ViewController
+        let viewController = ViewController()
+        //Assign the view controller as window's root view controller
+        window?.rootViewController = viewController
+        //Show the window
+        window?.makeKeyAndVisible()
+ */
+        
+        //Default code that I dont understand how to use
+        /*
         // Create the SwiftUI view that provides the window contents.
         let contentView = ContentView()
 
@@ -28,8 +42,30 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window.rootViewController = UIHostingController(rootView: contentView)
             self.window = window
             window.makeKeyAndVisible()
+        }*/
+        
+        //Second attempt at connecting to the View Controller
+        /*
+        if let windowScene = scene as? UIWindowScene {
+            let window = UIWindow(windowScene: <#T##UIWindowScene#>)
+            window.rootViewController = ViewController()
+            self.window = window
+            window.makeKeyAndVisible()
+        }
+ */
+        
+        //Third attempt from another source
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+        window = UIWindow(frame: UIScreen.main.bounds)
+        let viewController = ViewController()
+        window?.rootViewController = viewController
+        window?.makeKeyAndVisible()
+        window?.windowScene = windowScene
+        
         }
     }
+        
+    
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
@@ -60,5 +96,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
 
-}
+
 
