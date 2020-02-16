@@ -23,6 +23,7 @@ internal class ViewController : UIViewController {
         loginButton.setTitle("Login", for: .normal)
         loginButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(loginButton)
+        loginButton.addTarget(self, action: #selector(clickButton), for: .touchUpInside)
         
         nameTextField = UITextField(frame: .zero)
         nameTextField.placeholder = "Login Name"
@@ -53,6 +54,24 @@ internal class ViewController : UIViewController {
           nameTextField.bottomAnchor.constraint(equalTo: passwordTextField.topAnchor, constant: -20),
           nameTextField.leadingAnchor.constraint(equalTo: view.readableContentGuide.leadingAnchor, constant: 20),
           nameTextField.trailingAnchor.constraint(equalTo: view.readableContentGuide.trailingAnchor, constant: -20)        ])
+    }
+    
+    @objc func handleLoginTouchUpInside () {
+        print("Login has been tapped")
+        if nameTextField.isFirstResponder {
+            nameTextField.resignFirstResponder()
+        }
+        if passwordTextField.isFirstResponder {
+            passwordTextField.resignFirstResponder()
+        }
+    }
+    
+    @objc func clickButton () {
+        let message: String = "Hello World!"
+        let alertController: UIAlertController = UIAlertController(title: "", message: message, preferredStyle: UIAlertController.Style.alert)
+        let alertAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
+        alertController.addAction(alertAction)
+        present(alertController, animated: true, completion: nil)
     }
     /*
     override internal func didReceiveMemoryWarning() {
